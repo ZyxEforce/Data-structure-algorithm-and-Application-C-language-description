@@ -1,0 +1,26 @@
+#CMake 最低版本要求
+cmake_minimum_required(VERSION 3.15)
+
+# 项目信息
+PROJECT(FUNCTIONANDPARAMETER)
+
+# 查看当前目录下的所有文件
+# 并将文件名称保存到SRC_LIST变量
+AUX_SOURCE_DIRECTORY(../src SRC_LIST) 
+
+SET(EXECUTABLE_OUTPUT_PATH ../bin)
+
+ADD_DEFINITIONS(-g -fPIC -ldl -rdynamic -O0 -W -Wall -DLINUX -D_REENTRANT -D_FILE_OFFSET_BITS=64 
+-DAC_HAS_INFO -DAC_HAS_WARNING -DAC_HAS_ERROR -DAC_HAS_CRITICAL -DTIXML_USE_STL -DHAVE_CXX_STDHEADERS 
+-Wno-deprecated ${CMAKE_CXX_FLAGS})
+
+INCLUDE_DIRECTORIES(
+        ../include
+)
+
+LINK_DIRECTORIES(
+        ../src
+)
+
+# 指定生成目标
+ADD_EXECUTABLE(FuctionAndParameter ${SRC_LIST})
